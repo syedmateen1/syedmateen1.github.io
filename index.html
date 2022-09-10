@@ -1,0 +1,182 @@
+<!-- Project done by syed mateen,9 sep 2022 at schneider electric during the course of internship.
+This is a torque testing logsheet webpage which the operator can input and export it as excel-->
+
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Table</title>
+    <style>
+        table, th,td{
+            border: 1px solid black;
+            border-collapse:collapse;
+        }
+    </style>
+	
+    <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+</head>
+<body>
+    <p align="center"> TORQUE TESTING LOGSHEET</p>
+    <button onclick="ExportToExcel('xlsx')">Export table to excel</button>
+
+	<center>
+		<table border="4">
+			<thead>
+				<tr>
+					<th>DATE</th>
+					<td><input type="text" name="date" id="date"></td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>SHIFT</th>
+					<td><input type="text" name="shift" id="shift"></td>
+				</tr>
+				<tr>
+					<th>MODEL</th>
+					<td><input type="" name="model" id="model"></td>
+				</tr>
+				<tr>
+					<th>TORQUE SR</th>
+					<td><input type="text" name="torque" id="torque"></td>
+				</tr>
+                <tr>
+					<th>STAGE</th>
+					<td><input type="text" name="stage" id="stage"></td>
+				</tr>
+                <tr>
+					<th>TIME</th>
+					<td><input type="text" name="time" id="time"></td>
+				</tr>
+                <tr>
+					<th>TORQUE VALUE IN WI</th>
+					<td><input type="text" name="Tqvalue" id="tqvalue"></td>
+				</tr>
+                <tr>
+					<th>UNIT</th>
+					<td><input type="text" name="unit" id="unit"></td>
+				</tr>
+                <tr>
+					<th>MEASURED 3 TORQUE VALUE</th>
+					<td><input type="text" name="t3value" id="t3value"></td>
+				</tr>
+                <tr>
+					<th>TORQUE TESTER REF NO.</th>
+					<td><input type="text" name="trefno" id="trefno"></td>
+				</tr>
+                <tr>
+					<th>OPERATOR NAME</th>
+					<td><input type="text" name="opname" id="opname"></td>
+				</tr>
+                <tr>
+					<th>ID NO</th>
+					<td><input type="text" name="idno" id="idno"></td>
+				</tr>
+
+				<tr id="btna" align="center">
+					<td colspan="2"><input type="button" name="button" id="btn" value="Add" onclick="AddRow()"></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table border="4" id="table">
+			<thead>
+				<tr>
+					<th>DATE</th>
+					<th>SHIFT</th>
+					<th>MODEL</th>
+					<th>TORQUE SR</th>
+                    <th>STAGE</th>
+                    <th>TIME</th>
+                    <th>TORQUE VALUE IN WI</th>
+                    <th>UNIT</th>
+                    <th>MEASURED 3 TORQUE VALUE</th>
+                    <th>TORQUE TESTER REF NO.</th>
+                    <th>OPERATOR NAMEE</th>
+                    <th>ID NO</th>
+				</tr>
+			</thead>
+		</table>
+	</center>
+	
+	<script>
+		
+		var list1 = [];
+		var list2 = [];
+		var list3 = [];
+		var list4 = [];
+        var list5 = [];
+        var list6 = [];
+        var list7 = [];
+        var list8 = [];
+        var list9 = [];
+        var list10 = [];
+        var list11 = [];
+        var list12 = [];
+
+		var n = 1;
+		var x = 0;
+
+		function AddRow(){
+
+			var AddRown = document.getElementById('table');
+			var NewRow = AddRown.insertRow(n);
+
+			list1[x] = document.getElementById("date").value;
+			list2[x] = document.getElementById("shift").value;
+			list3[x] = document.getElementById("model").value;
+			list4[x] = document.getElementById("torque").value;
+            list5[x] = document.getElementById("stage").value;
+            list6[x] = document.getElementById("time").value;
+            list7[x] = document.getElementById("tqvalue").value;
+            list8[x] = document.getElementById("unit").value;
+            list9[x] = document.getElementById("t3value").value;
+            list10[x] = document.getElementById("trefno").value;
+            list11[x] = document.getElementById("opname").value;
+            list12[x] = document.getElementById("idno").value;
+
+			var cel1 = NewRow.insertCell(0);
+			var cel2 = NewRow.insertCell(1);
+			var cel3 = NewRow.insertCell(2);
+			var cel4 = NewRow.insertCell(3);
+            var cel5 = NewRow.insertCell(4);
+            var cel6 = NewRow.insertCell(5);
+            var cel7 = NewRow.insertCell(6);
+            var cel8 = NewRow.insertCell(7);
+            var cel9 = NewRow.insertCell(8);
+            var cel10 = NewRow.insertCell(9);
+            var cel11= NewRow.insertCell(10);
+            var cel12 = NewRow.insertCell(11);
+
+
+			cel1.innerHTML = list1[x];
+			cel2.innerHTML = list2[x];
+			cel3.innerHTML = list3[x];
+			cel4.innerHTML = list4[x];
+            cel5.innerHTML = list5[x];
+            cel6.innerHTML = list6[x];
+            cel7.innerHTML = list7[x];
+            cel8.innerHTML = list8[x];
+            cel9.innerHTML = list9[x];
+            cel10.innerHTML = list10[x];
+            cel11.innerHTML = list11[x];
+            cel12.innerHTML = list12[x];
+
+			n++;
+			x++;
+		}
+
+	</script>
+    <script>
+
+        function ExportToExcel(type, fn, dl) {
+            var elt = document.getElementById('table');
+            var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
+            return dl ?
+                XLSX.write(wb, { bookType: type, bookSST: true, type: 'base64' }) :
+                XLSX.writeFile(wb, fn || ('TorqueTestingLogsheet.' + (type || 'xlsx')));
+        }
+
+    </script>
+</body>
+</html>

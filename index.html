@@ -5,36 +5,317 @@ This is a torque testing logsheet webpage which the operator can input and expor
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Torque testing logsheet</title>
+	<title>Table</title>
     <style>
-        table, th,td{
+        table, th,td
+        {
             border: 1px solid black;
             border-collapse:collapse;
         }
+         
     </style>
 	
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 </head>
 <body>
-    <p align="center"> TORQUE TESTING LOGSHEET</p>
-    <button onclick="ExportToExcel('xlsx')">Export table to excel</button>
-
+    <p align="center"><u> TORQUE TESTING LOGSHEET</u></p>
+    <p align="center"><button onclick="ExportToExcel('xlsx')">Export table to excel</button></p>
 	<center>
 		<table border="4">
 			<thead>
 				<tr>
 					<th>DATE</th>
-					<td><input type="text" name="date" id="date"></td>
+					<td> <input id="date" name="date">
+                         <script>
+                        var date = new Date();
+
+                        var day = date.getDate();
+                        var month = date.getMonth()+1;
+                        var year = date.getFullYear();
+                        
+                        if (month < 10) month = "0" + month;
+                        if (day < 10) day = "0" + day;
+                        
+                        var today =  day+"-" +month + "-" +year  ;                       
+                        document.getElementById('date').value = today;
+                        </script>                   
 				</tr>
-			</thead>
 			<tbody>
 				<tr>
 					<th>SHIFT</th>
-					<td><input type="text" name="shift" id="shift"></td>
+					<td><input type="text" name="shift" id="shift" list="nameofshift">
+                        <datalist id="nameofshift">
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option></datalist>
+                    </td>
 				</tr>
 				<tr>
 					<th>MODEL</th>
-					<td><input type="" name="model" id="model"></td>
+					<td><input type="text" name="model" id="model" list="models">
+						<datalist id="models">
+						<option>PCSP060D5IP00 [Chasis]</option>
+							<option >PCSP060D5IP31 [Enclosure-Drip Proof]
+						</option>
+							<option>PCSP060D5IP54 [Enclosure -]</option>
+							<option>PCSP060D5N12
+						</option>
+							<option>PCSP060D5N2
+						</option>
+							<option>PCSP060D2IP00
+						</option>
+							<option>PCSP060D2IP31
+						</option>
+							<option>PCSP060D2IP54
+						</option>
+							<option>PCSP060D2N2
+							</option>
+							<option></option>
+							<option >PCSP060D2N12
+							</option>
+							<option>EVCP060D5IP00
+							</option>
+							<option>EVCP060D5IP31
+							</option>
+							<option >EVCP060D5IP54
+							</option>
+							<option >EVCP060D5N2
+							</option>
+							<option >EVCP060D5N12
+							</option>
+							<option >PHA67956
+							</option>
+							<option >PCSP120D5IP00
+							</option>
+							<option >PCSP120D5IP31
+							</option>
+							<option >PCSP120D5IP54
+							</option>
+							<option >PCSP120D5N12
+							</option>
+							<option >PCSP120D5N2
+							</option>
+							<option >PCSP120D2IP00
+							</option>
+							<option >PCSP120D2IP31
+							</option>
+							<option >PCSP120D2IP54
+							</option>
+							<option >PCSP120D2N2
+							</option>
+							<option >PCSP120D2N12
+							</option>
+							<option >EVCP120D5IP00
+							</option>
+							<option >EVCP120D5IP31
+							</option>
+							<option >EVCP120D5IP54
+							</option>
+							<option >EVCP120D5N2
+							</option>
+							<option >EVCP120D5N12
+							</option>
+							<option >PHA67957
+							</option>
+							<option >PCSP200D5IP00
+							</option>
+							<option >PCSP200D5IP31
+							</option>
+							<option >PCSP200D5IP54
+							</option>
+							<option >PCSP200D5N12
+							</option>
+							<option >PCSP200D5N2
+							</option>
+							<option >PCSP200D5N1
+							</option>
+							<option >PCSP200D2IP00
+							</option>
+							<option >PCSP200D2IP31
+							</option>
+							<option >PCSP200D2IP54
+							</option>
+							<option >PCSP200D2N2
+							</option>
+							<option >PCSP200D2N12
+							</option>
+							<option >EVCP200D5IP00
+							</option>
+							<option >EVCP200D5IP31
+							</option>
+							<option >EVCP200D5IP54
+							</option>
+							<option >EVCP200D5N2
+							</option>
+                            <option >EVCP200D5N12
+							</option>
+							<option >PHA67958
+							</option>
+							<option >PCSP300D5IP00
+							</option>
+							<option >PCSP300D5IP31
+							</option>
+							<option >PCSP300D5IP54
+							</option>
+							<option >PCSP300D5N12
+							</option>
+							<option >PCSP300D5N2
+							</option>
+							<option >PCSP300D5N1
+							</option>
+							<option >PCSP300D2IP00
+							</option>
+							<option >PCSP300D2IP31
+							</option>
+							<option >PCSP300D2IP54
+							</option>
+							<option >PCSP300D2N2
+							</option>
+							<option >PCSP300D2N12
+							</option>
+							<option >EVCP300D5IP00
+							</option>
+							<option >EVCP300D5IP31
+							</option>
+							<option >EVCP300D5IP54
+							</option>
+							<option >EVCP300D5N2
+							</option>
+							<option >EVCP300D5N12
+							</option>
+							<option >PHA67959
+							</option>
+							<option >PCSN020Y4CH00
+							</option>
+							<option >PCSN020Y4W20
+							</option>
+							<option >PCSN030Y4CH00
+							</option>
+							<option >PCSN030Y4R19
+							</option>
+							<option >PCSN030Y4W20
+							</option>
+							<option >PCSN050Y4CH00
+							</option>
+							<option >PCSN050Y4W20
+							</option>
+							<option >PCSN060Y4CH00
+							</option>
+							<option >PCSN060Y4CH00E
+							</option>
+							<option >PCSN060Y4R19
+							</option>
+							<option >PCSN060Y4R19E
+							</option>
+							<option >PCSN060Y4W20
+							</option>
+							<option >PCSN060Y4W20E
+							</option>
+							    
+							<option >GVSBPIT25
+							</option>
+						    <option>GVSBPIT50
+							</option>
+						    <option >GVSBPOT50
+							</option>
+					        <option >GVSBPOT100
+							</option>GVSBPOT150
+							<option >
+							</option>
+							<option >GVSBP100T
+							</option>
+							<option >GVSBPIT25B
+							</option>
+							<option >GVSBPIT75
+							</option>
+							<option >GVSBPOT100T
+							</option>
+							<option >GVSBPOT50B
+							</option>
+							<option >0M-86246G
+							</option>
+							<option >GVBBB630EL-1CB
+							</option>
+							<option >GVBBB630EL-2CB
+							</option>
+							<option >GVBBB630EL-3CB
+							</option>
+							<option >GVBBK630EL -1
+							</option>
+
+							<option >GVSBPSU150KH
+ 							</option>
+							<option >GVSBPSU20K60H
+							</option>
+							<option >GVSBPSU80K120H
+							</option>
+							<option >GVSBPSU150G
+							</option>
+							<option >GVSBPSU80G
+							</option>
+							<option >GVLMBCA200K500G
+							</option>
+							<option >GVLMBCA200K500H
+							</option>
+							<option >GVXI1000KG
+							</option>
+							<option >GVXI1000KH
+							</option>
+							<option >GVXI1500KD
+							</option>
+							<option >GVXI1250KD
+							</option>
+							<option >GVXMBCG
+							</option>
+							
+							<option >0M-G7TS1200CS
+							</option>
+							<option >G55TTC120RH
+							</option>
+							<option >G55TTC40RH
+							</option>
+							<option >G55TTC60RH
+							</option>
+
+							<option >"XFMR 500KVA, MIS,
+								NO MOB, DUAL VOLTAGE"
+								</option>
+							<option >XFMR 500KVA 60HZ 480D/400Y-208Y AL WH
+							</option>
+							<option >XFMR 500KVA 60HZ 480D / 208Y CU ASY WH
+							</option>
+							<option >XFMR 400KVA, MIS,NO MOB, DUAL VOLTAGE
+							</option>
+							<option >XFMR 400KVA 60HZ 480D/400Y-208Y AL WH
+							</option>
+							<option >XFMR 400KVA 60HZ 480D / 208Y CU ASY WH
+							</option>
+							<option >0G-GVMI200KH
+							</option>
+							<option >0G-GVMI225KG65K
+							</option>
+							<option >0G-GVMIP200KH
+							</option>
+							<option >0G-GVMIP225KG65K
+							</option>
+							<option >0G-GVMIPR225KG65K
+							</option>
+							<option >GVMMODBCN
+							</option>
+							<option >GVMMODBCW
+							</option>
+							<option >GVMSBCLB675KG
+							</option>
+							<option >GVMTF225KGF
+							</option>
+							<option >GVMSBC675KG
+							</option>
+							<option >GVMSBC450KG
+							</option>
+							
+
+						</datalist>
+					</td>
 				</tr>
 				<tr>
 					<th>TORQUE SR</th>
@@ -42,11 +323,19 @@ This is a torque testing logsheet webpage which the operator can input and expor
 				</tr>
                 <tr>
 					<th>STAGE</th>
-					<td><input type="text" name="stage" id="stage"></td>
+					<td><input type="text" name="stage" id="stage" list="stages">
+					<datalist id="stages">
+						<option>Sub assembly</option>
+						<option>build line</option>
+						<option>finishing line</option>
+					</datalist>
+						</td>
 				</tr>
                 <tr>
 					<th>TIME</th>
-					<td><input type="text" name="time" id="time"></td>
+					<td><input type="text" name="time" id="time">
+                        
+                    </td>
 				</tr>
                 <tr>
 					<th>TORQUE VALUE IN WI</th>
@@ -54,7 +343,7 @@ This is a torque testing logsheet webpage which the operator can input and expor
 				</tr>
                 <tr>
 					<th>UNIT</th>
-					<td><input type="text" name="unit" id="unit"></td>
+					<td><input type="text" name="unit" id="unit" value="Nm"></td>
 				</tr>
                 <tr>
 					<th>MEASURED 3 TORQUE VALUE</th>
@@ -72,7 +361,6 @@ This is a torque testing logsheet webpage which the operator can input and expor
 					<th>ID NO</th>
 					<td><input type="text" name="idno" id="idno"></td>
 				</tr>
-
 				<tr id="btna" align="center">
 					<td colspan="2"><input type="button" name="button" id="btn" value="Add" onclick="AddRow()"></td>
 				</tr>
@@ -110,9 +398,9 @@ This is a torque testing logsheet webpage which the operator can input and expor
         var list7 = [];
         var list8 = [];
         var list9 = [];
-        var list10 = [];
-        var list11 = [];
-        var list12 = [];
+        var list10= [];
+        var list11= [];
+        var list12= [];
 
 		var n = 1;
 		var x = 0;
@@ -167,9 +455,10 @@ This is a torque testing logsheet webpage which the operator can input and expor
 		}
 
 	</script>
-    <script>
 
-        function ExportToExcel(type, fn, dl) {
+    <script>
+        function ExportToExcel(type, fn, dl) 
+        {
             var elt = document.getElementById('table');
             var wb = XLSX.utils.table_to_book(elt, { sheet: "sheet1" });
             return dl ?
